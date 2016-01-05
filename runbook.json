@@ -1,0 +1,14 @@
+{
+	"schemaVersion": 1,
+	"name": "Email Signatures",
+	"purpose": "Service for generating email signatures from RSS feeds",
+	"audience": "public",
+	"serviceTier": "bronze",
+	"dateCreated": "2016-01-05",
+	"contacts": [
+		{ "name":"FT Labs team", "email":"ftlabs@ft.com", "rel":"owner", "domain":"All support enquiries" }
+	],
+	"links": [
+		{ "url":"https://github.com/ftlabs/email-signature-server", "category":"repo" }
+	]
+}

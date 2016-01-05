@@ -1,0 +1,19 @@
+{
+  "name": "email-signatures-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "FTLabs",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^1.2.0",
+    "express": "^4.13.3",
+    "express-ftwebservice": "^2.0.2",
+    "express-handlebars": "^2.0.1",
+    "feedparser": "^1.1.4",
+    "request": "^2.67.0"
+  }
+}
