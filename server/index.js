@@ -26,6 +26,7 @@ app.get('/sig', function (req, res) {
 			}
 			res.render(shoudDebug ? 'sig-debug' : 'sig' , items);
 		}, function (err) {
+			res.status(400);
 			res.render('error', {message: err.message});
 		});
 	}
