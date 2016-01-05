@@ -3,6 +3,7 @@
 const FeedParser = require('feedparser')
 const request = require('request');
 const debug = require('debug')('email-signature-server');
+const moment = require('moment');
 
 module.exports = function getRSSItem(url) {
 	const req = request(url);
@@ -43,6 +44,9 @@ module.exports = function getRSSItem(url) {
 			const stream = this;
 			let item;
 			while (item = stream.read()) {
+				if (item.date) {
+					item.humanDate = moment(item.date).format('LLLL'); 
+				}
 				output.push(item);
 			}
 		});
