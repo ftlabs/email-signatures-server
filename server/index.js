@@ -27,7 +27,15 @@ app.get('/sig', function (req, res) {
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
 			}
-			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme , items);
+			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme , items, function(err, html) {
+				if (err) {
+					if (err.message.indexOf('Failed to lookup view') !== -1) {
+						return res.render('signature-pink', items);
+					}
+					throw err;
+				}
+				res.send(html);
+			});
 		}, function (err) {
 			res.status(400);
 			res.render('error', {message: err.message});
