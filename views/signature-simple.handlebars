@@ -1,8 +1,8 @@
 <h2>{{#meta}}{{description}}{{/meta}}</h2>
 {{#items}}
-<a href="{{link}}">
-	<div>
-		<h4>{{title}}</h4>
+<a href="{{link}}" style="text-decoration: none; color: black;">
+	<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em;">
+		<h4 style="font-size: 1.3em; text-decoration: underline;">{{title}}</h4>
 		{{#author}}{{author}} - {{/author}}{{humanDate}}
 		<p>{{description}}</p>
 	</div>
