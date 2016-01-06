@@ -19,14 +19,15 @@ app.get('/sig', function (req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 	if (req.query.url) {
-		return getRSSItem(req.query.url)
+		return getRSSItem(decodeURIComponent(req.query.url))
 		.then(function (items) {
 			const shoudDebug = !!req.query.debug;
 			const limit = req.query.max || 3;
+			const theme = req.query.theme || 'pink';
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
 			}
-			res.render(shoudDebug ? 'sig-debug' : 'sig' , items);
+			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme , items);
 		}, function (err) {
 			res.status(400);
 			res.render('error', {message: err.message});
