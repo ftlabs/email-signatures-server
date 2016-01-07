@@ -24,8 +24,16 @@ app.get('/sig', function (req, res) {
 			const shoudDebug = !!req.query.debug;
 			const limit = req.query.max || 3;
 			const theme = req.query.theme || 'pink';
+			const omits = req.query.omit ? req.query.omit.split(',') : [];
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
+			}
+			if (omits.length) {
+				items.items.forEach(item => {
+					omits.forEach(key => {
+						item[key] = undefined;
+					});
+				});
 			}
 			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme , items, function(err, html) {
 				if (err) {
