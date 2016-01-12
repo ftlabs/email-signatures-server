@@ -42,8 +42,6 @@ app.get('/sig', function (req, res) {
 
 			items.size = req.query.size || 'full';
 
-			console.log(items.size, 'signature-' + theme);
-
 			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme, items, function(err, html) {
 				if (err) {
 					if (err.message.indexOf('Failed to lookup view') !== -1) {
