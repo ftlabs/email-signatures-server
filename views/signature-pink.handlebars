@@ -1,12 +1,49 @@
-<div style="background: #fff1e0; color: #333;">
-<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.5em; font-family: Helvetica, Sans; font-weight: 100; margin:0 0 0.5em 0; opacity: 0.8;">{{#meta}}{{description}}{{/meta}}</h2>
-{{#items}}
-<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
-	<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em;">
-		<h4 style="font-weight: 400; font-size: 1.5em; line-height: 1.7em; margin: 0 0 0.5em 0;">{{title}}</h4>
-		{{#author}}{{author}} - {{/author}}{{humanDate}}
-		<p style="font-family: Helvetica, Sans; font-weight: 200; font-size: 1.2em; line-height: 1.3em; opacity: 0.8;">{{description}}</p>
+{{#ifEq size 'small' }}
+
+	<div style="background: #fff1e0; color: #333;">
+	<h2 style="border-bottom: 4px solid; border-color: #9b164f; font-family: Helvetica, Sans; font-weight: 100; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 0.9em; padding: 0.4em;">{{#meta}}{{description}}{{/meta}}</h2>
+	{{#items}}
+	<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
+		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em; font-size: 0.7em;">
+			<h4 style="font-weight: 600; font-size: 1.1em; line-height: 1.7em; margin: 0 0 0em 0;">{{title}}</h4>
+			{{#author}}{{author}} - {{/author}}{{humanDate}}
+			<p style="font-family: Helvetica, Sans; font-weight: 400; font-size: 0.9em; line-height: 1.3em; opacity: 1; margin-top: 0.3em;">{{description}}</p>
+		</div>
+	</a>
+	{{/items}}
 	</div>
-</a>
-{{/items}}
-</div>
+
+{{/ifEq}}
+
+{{#ifEq size 'medium'}}
+	<div style="background: #fff1e0; color: #333;">
+	<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.4em; font-family: Helvetica, Sans; font-weight: 100; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 1.3em;">{{#meta}}{{description}}{{/meta}}</h2>
+	{{#items}}
+	<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
+		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0em 0.5em; font-size: 1em;">
+			<h4 style="font-weight: 600; font-size: 1.1em; line-height: 1.7em; margin: 0 0 0.3em 0;">{{title}}</h4>
+			{{#author}}{{author}} - {{/author}}{{humanDate}}
+			<p style="font-family: Helvetica, Sans; font-weight: 400; font-size: 0.9em; line-height: 1.3em; opacity: 1;">{{description}}</p>
+		</div>
+	</a>
+	{{/items}}
+	</div>
+
+{{/ifEq}}
+
+{{#ifEq size 'full'}}
+
+	<div style="background: #fff1e0; color: #333;">
+	<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.5em; font-family: Helvetica, Sans; font-weight: 100; margin:0 0 0.5em 0; opacity: 0.8;">{{#meta}}{{description}}{{/meta}}</h2>
+	{{#items}}
+	<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
+		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em;">
+			<h4 style="font-weight: 400; font-size: 1.5em; line-height: 1.7em; margin: 0 0 0.5em 0;">{{title}}</h4>
+			{{#author}}{{author}} - {{/author}}{{humanDate}}
+			<p style="font-family: Helvetica, Sans; font-weight: 200; font-size: 1.2em; line-height: 1.3em; opacity: 0.8;">{{description}}</p>
+		</div>
+	</a>
+	{{/items}}
+	</div>
+
+{{/ifEq}}
