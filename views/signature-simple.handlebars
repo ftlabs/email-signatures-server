@@ -1,6 +1,9 @@
 {{#ifEq size 'small' }}
-
-	<h2 style="margin: 0; opacity: 0.8; font-size: 0.9em; padding: 0.4em 0.4em 0;">{{#meta}}{{description}}{{/meta}}</h2>
+	{{#meta}}
+		{{#if description}}
+			<h2 style="margin: 0; opacity: 0.8; font-size: 0.9em; padding: 0.4em 0.4em 0;">{{description}}</h2>
+		{{/if}}
+	{{/meta}}
 	{{#items}}
 	<a href="{{link}}" style="text-decoration: none; color: black;">
 		<div style="border-bottom: 1px dotted #bbb; padding: 0.5em; font-size: 0.7em;">
@@ -13,8 +16,12 @@
 {{/ifEq}}
 
 {{#ifEq size 'medium' }}
+	{{#meta}}
+		{{#if description}}
+			<h2 style="padding: 0.4em; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 1.4em;">{{description}}</h2>
+		{{/if}}
+	{{/meta}}
 
-	<h2 style="padding: 0.4em; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 1.4em;">{{#meta}}{{description}}{{/meta}}</h2>
 	{{#items}}
 	<a href="{{link}}" style="text-decoration: none; color: black;">
 		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0em 0.5em; font-size: 1em;">
@@ -27,8 +34,12 @@
 {{/ifEq}}
 
 {{#ifEq size 'full' }}
-
-	<h2>{{#meta}}{{description}}{{/meta}}</h2>
+	
+	{{#meta}}
+		{{#if description}}
+			<h2>{{description}}</h2>
+		{{/if}}
+	{{/meta}}
 	{{#items}}
 	<a href="{{link}}" style="text-decoration: none; color: black;">
 		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em;">

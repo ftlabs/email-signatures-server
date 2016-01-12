@@ -1,7 +1,14 @@
 {{#ifEq size 'small' }}
 
 	<div style="background: #fff1e0; color: #333;">
-	<h2 style="border-bottom: 4px solid; border-color: #9b164f; font-family: Helvetica, Sans; font-weight: 100; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 0.9em; padding: 0.4em;">{{#meta}}{{description}}{{/meta}}</h2>
+	{{#meta}}
+
+		{{#if description}}
+			<h2 style="border-bottom: 4px solid; border-color: #9b164f; font-family: Helvetica, Sans; font-weight: 100; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 0.9em; padding: 0.4em;">{{description}}</h2>
+		{{/if}}
+
+	{{/meta}}
+
 	{{#items}}
 	<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
 		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em; font-size: 0.7em;">
@@ -17,7 +24,15 @@
 
 {{#ifEq size 'medium'}}
 	<div style="background: #fff1e0; color: #333;">
-	<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.4em; font-family: Helvetica, Sans; font-weight: 100; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 1.3em;">{{#meta}}{{description}}{{/meta}}</h2>
+
+	{{#meta}}
+
+		{{#if description}}
+			<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.4em; font-family: Helvetica, Sans; font-weight: 100; margin: 0 0 0.5em 0; opacity: 0.8; font-size: 1.3em;">{{description}}</h2>
+		{{/if}}
+
+	{{/meta}}
+
 	{{#items}}
 	<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
 		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0em 0.5em; font-size: 1em;">
@@ -32,9 +47,14 @@
 {{/ifEq}}
 
 {{#ifEq size 'full'}}
-
 	<div style="background: #fff1e0; color: #333;">
-	<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.5em; font-family: Helvetica, Sans; font-weight: 100; margin:0 0 0.5em 0; opacity: 0.8;">{{#meta}}{{description}}{{/meta}}</h2>
+	{{#meta}}
+
+		{{#if description}}
+			<h2 style="border-bottom: 4px solid; border-color: #9b164f; padding: 0.5em; font-family: Helvetica, Sans; font-weight: 100; margin:0 0 0.5em 0; opacity: 0.8;">{{description}}</h2>
+		{{/if}}
+
+	{{/meta}}
 	{{#items}}
 	<a href="{{link}}" style="margin-bottom: 1em; color: #333; text-decoration: none;">
 		<div style="border-bottom: 1px dotted #bbb; padding: 0 0.5em 0.5em 0.5em;">

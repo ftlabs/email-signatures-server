@@ -42,6 +42,10 @@ app.get('/sig', function (req, res) {
 
 			items.size = req.query.size || 'full';
 
+			if(omits.indexOf('heading') > -1){
+				delete items.meta.description;
+			}
+
 			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme, items, function(err, html) {
 				if (err) {
 					if (err.message.indexOf('Failed to lookup view') !== -1) {
