@@ -1,4 +1,4 @@
-<h2>{{#meta}}{{description}}{{/meta}}</h2>
+{{#meta}}{{#if description}}<h2>{{description}}</h2>{{/if}}{{/meta}}
 {{#items}}
 <a href="{{link}}">
 	<div>

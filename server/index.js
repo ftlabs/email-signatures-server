@@ -10,6 +10,9 @@ const getRSSItem = require('./lib/getRSSItem')
 // Use Handlebars for templating
 const hbs = exphbs.create({
 	defaultLayout: 'main',
+	helpers: {
+		ifEq: function(a, b, options) { return (a === b) ? options.fn(this) : options.inverse(this); }
+	}
 });
 
 app.engine('handlebars', hbs.engine);
@@ -25,6 +28,7 @@ app.get('/sig', function (req, res) {
 			const limit = req.query.max || 3;
 			const theme = req.query.theme || 'pink';
 			const omits = req.query.omit ? req.query.omit.split(',') : [];
+
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
 			}
@@ -35,7 +39,14 @@ app.get('/sig', function (req, res) {
 					});
 				});
 			}
-			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme , items, function(err, html) {
+
+			items.size = req.query.size || 'full';
+
+			if(omits.indexOf('heading') > -1){
+				delete items.meta.description;
+			}
+
+			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme, items, function(err, html) {
 				if (err) {
 					if (err.message.indexOf('Failed to lookup view') !== -1) {
 						return res.render('signature-pink', items);
