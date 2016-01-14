@@ -2,11 +2,18 @@
 
 const FeedParser = require('feedparser')
 const request = require('request');
+// const fetch = require('node-fetch');
 const debug = require('debug')('email-signature-server');
 const moment = require('moment');
 
 module.exports = function getRSSItem(url) {
-	const req = request(url);
+	const req = request({
+		url,
+		followRedirect : true,
+		headers : {
+			'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1'
+		}
+	});
 	const feedparser = new FeedParser();
 
 	return new Promise(function (resolve, reject) {
@@ -21,6 +28,7 @@ module.exports = function getRSSItem(url) {
 		});
 
 		req.on('response', function (res) {
+
 			const stream = this;
 
 			if (res.statusCode !== 200) {
