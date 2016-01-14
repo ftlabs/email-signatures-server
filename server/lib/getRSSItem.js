@@ -2,7 +2,6 @@
 
 const FeedParser = require('feedparser')
 const request = require('request');
-// const fetch = require('node-fetch');
 const debug = require('debug')('email-signature-server');
 const moment = require('moment');
 
