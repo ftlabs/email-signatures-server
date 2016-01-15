@@ -16,7 +16,7 @@ const hbs = exphbs.create({
 	}
 });
 
-const FTCampTracking = "ftcamp=engage/extensions/reach/gmail_sig/rss_articles/ftlabs";
+const FTCampTracking = "engage/extensions/reach/gmail_sig/rss_articles/ftlabs";
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -50,9 +50,10 @@ app.get('/sig', function (req, res) {
 			}
 
 			items.items.forEach(item => {
-			 	const params = qs.parse(item.link.split('?')[1]);
-			 	params['ftcamp'] = 'engage/extensions/reach/gmail_sig/rss_articles/ftlabs';
-			 	item.link = `${item.link.split('?')[0]}?${qs.stringify(params)}`;
+				const urlParts = item.link.split('?');
+			 	const params = qs.parse(urlParts[1]);
+			 	params['ftcamp'] = FTCampTracking;
+			 	item.link = `${urlParts[0]}?${qs.stringify(params)}`;
 				return item;
 			})
 
