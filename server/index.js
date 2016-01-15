@@ -5,7 +5,8 @@ const exphbs = require('express-handlebars');
 const ftwebservice = require('express-ftwebservice');
 const path = require('path');
 const app = express();
-const getRSSItem = require('./lib/getRSSItem')
+const qs = require('qs');
+const getRSSItem = require('./lib/getRSSItem');
 
 // Use Handlebars for templating
 const hbs = exphbs.create({
@@ -14,6 +15,8 @@ const hbs = exphbs.create({
 		ifEq: function(a, b, options) { return (a === b) ? options.fn(this) : options.inverse(this); }
 	}
 });
+
+const FTCampTracking = "ftcamp=engage/extensions/reach/gmail_sig/rss_articles/ftlabs";
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -45,6 +48,13 @@ app.get('/sig', function (req, res) {
 			if(omits.indexOf('heading') > -1){
 				delete items.meta.description;
 			}
+
+			items.items.forEach(item => {
+			 	const params = qs.parse(item.link.split('?')[1]);
+			 	params['ftcamp'] = 'engage/extensions/reach/gmail_sig/rss_articles/ftlabs';
+			 	item.link = `${item.link.split('?')[0]}?${qs.stringify(params)}`;
+				return item;
+			})
 
 			res.render(shoudDebug ? 'signature-debug' : 'signature-' + theme, items, function(err, html) {
 				if (err) {
