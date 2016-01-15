@@ -16,6 +16,7 @@
     "express-handlebars": "^2.0.1",
     "feedparser": "^1.1.4",
     "moment": "^2.11.0",
+    "qs": "^6.0.1",
     "request": "^2.67.0"
   }
 }
