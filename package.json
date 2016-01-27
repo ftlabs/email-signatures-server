@@ -5,7 +5,9 @@
   "main": "bin/www",
   "scripts": {
     "start": "bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "setup": "node-lambda setup",
+    "run": "node-lambda run",
+    "deploy": "node-lambda deploy"
   },
   "author": "FTLabs",
   "license": "MIT",
@@ -16,7 +18,9 @@
     "express-handlebars": "^2.0.1",
     "feedparser": "^1.1.4",
     "moment": "^2.11.0",
+    "node-lambda": "^0.7.1",
     "qs": "^6.0.1",
-    "request": "^2.67.0"
+    "request": "^2.67.0",
+    "supertest": "^1.1.0"
   }
 }
