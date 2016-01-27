@@ -1,14 +1,24 @@
 {
 	"schemaVersion": 1,
-	"name": "Email Signatures",
-	"purpose": "Service for generating email signatures from RSS feeds",
+	"name": "Email Signature Server",
+	"purpose": "Server for generating html email signatures from rss feeds.",
 	"audience": "public",
+	"primaryUrl": "http://ftlabs-email-signatures-server.herokuapp.com/",
 	"serviceTier": "bronze",
-	"dateCreated": "2016-01-05",
+	"apiVersion": 1,
+	"apiVersions": [
+		{ "path": "/sig", "supportStatus": "active" },
+	],
+	"dateCreated": "2015-11-02",
 	"contacts": [
 		{ "name":"FT Labs team", "email":"ftlabs@ft.com", "rel":"owner", "domain":"All support enquiries" }
 	],
 	"links": [
-		{ "url":"https://github.com/ftlabs/email-signature-server", "category":"repo" }
+		{"url": "https://github.com/ftlabs/email-signatures-server", "category": "repo"},
+		{"url": "https://github.com/ftlabs/email-signatures", "category": "repo"},
+		{"url": "https://github.com/ftlabs/email-signatures/issues", "category": "issues"},
+		{"url": "http://git.svc.ft.com/projects/LABSPROT/repos/electron-for-ftlabs-screens/browse", "category": "repo"},
+		{"url": "https://github.com/ftlabs/email-signatures-server/blob/master/README.md", "category": "documentation", "description": "README"},
+		{"url": "https://docs.google.com/document/d/1O3EEPPaVg7K83iEyINLCdA49Hi507IpHN1y9KDuE0vQ/edit#heading=h.4lbhp2qk695z", "category": "documentation", "description": "discussion document"}
 	]
 }
