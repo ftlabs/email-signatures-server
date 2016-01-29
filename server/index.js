@@ -1,22 +1,22 @@
 'use strict';
 
-const express = require('express');
-const exphbs = require('express-handlebars');
-const ftwebservice = require('express-ftwebservice');
-const path = require('path');
-const app = express();
-const qs = require('qs');
-const getRSSItem = require('./lib/getRSSItem');
+var express = require('express');
+var exphbs = require('express-handlebars');
+var ftwebservice = require('express-ftwebservice');
+var path = require('path');
+var app = express();
+var qs = require('qs');
+var getRSSItem = require('./lib/getRSSItem');
 
 // Use Handlebars for templating
-const hbs = exphbs.create({
+var hbs = exphbs.create({
 	defaultLayout: 'main',
 	helpers: {
 		ifEq: function(a, b, options) { return (a === b) ? options.fn(this) : options.inverse(this); }
 	}
 });
 
-const FTCampTracking = "engage/extensions/reach/gmail_sig/rss_articles/ftlabs";
+var FTCampTracking = "engage/extensions/reach/gmail_sig/rss_articles/ftlabs";
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -27,17 +27,17 @@ app.get('/sig', function (req, res) {
 	if (req.query.url) {
 		return getRSSItem(decodeURIComponent(req.query.url))
 		.then(function (items) {
-			const shoudDebug = !!req.query.debug;
-			const limit = req.query.max || 3;
-			const theme = req.query.theme || 'pink';
-			const omits = req.query.omit ? req.query.omit.split(',') : [];
+			var shoudDebug = !!req.query.debug;
+			var limit = req.query.max || 3;
+			var theme = req.query.theme || 'pink';
+			var omits = req.query.omit ? req.query.omit.split(',') : [];
 
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
 			}
 			if (omits.length) {
-				items.items.forEach(item => {
-					omits.forEach(key => {
+				items.items.forEach(function (item) {
+					omits.forEach(function (key) {
 						item[key] = undefined;
 					});
 				});
@@ -45,15 +45,15 @@ app.get('/sig', function (req, res) {
 
 			items.size = req.query.size || 'full';
 
-			if(omits.indexOf('heading') > -1){
+			if (omits.indexOf('heading') > -1){
 				delete items.meta.description;
 			}
 
-			items.items.forEach(item => {
-				const urlParts = item.link.split('?');
-			 	const params = qs.parse(urlParts[1]);
+			items.items.forEach(function (item) {
+				var urlParts = item.link.split('?');
+			 	var params = qs.parse(urlParts[1]);
 			 	params['ftcamp'] = FTCampTracking;
-			 	item.link = `${urlParts[0]}?${qs.stringify(params)}`;
+			 	item.link = urlParts[0] + '?' + qs.stringify(params);
 				return item;
 			})
 
@@ -82,7 +82,9 @@ ftwebservice(app, {
 	manifestPath: path.join(__dirname, '../package.json'),
 	about: require('../runbook.json'),
 	healthCheck: require('../tests/healthcheck'),
-	goodToGoTest: () => Promise.resolve(true)
+	goodToGoTest: function () {
+		return Promise.resolve(true);
+	}
 });
 
 module.exports = app;

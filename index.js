@@ -1,13 +1,17 @@
-const expressApp = require('./server/');
-const request = require('supertest');
+'use strict';
+
+var expressApp = require('./server/');
+var request = require('supertest');
 
 exports.handler = function( event, context ) {
 
-	const req = request(expressApp).get('/sig');
+	var req = request(expressApp).get('/sig');
 
 	Object.keys(event)
 	.forEach(function (key) {
-		req.query({ [key]: event[key] });
+		var o = {};
+		o[key] = event[key];
+		req.query(o);
 	});
 	
 	req.end(function(err, res){

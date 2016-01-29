@@ -1,23 +1,23 @@
 'use strict';
 
-const FeedParser = require('feedparser')
-const request = require('request');
-const debug = require('debug')('email-signature-server');
-const moment = require('moment');
+var FeedParser = require('feedparser')
+var request = require('request');
+var debug = require('debug')('email-signature-server');
+var moment = require('moment');
 
 module.exports = function getRSSItem(url) {
-	const req = request({
-		url,
-		followRedirect : true,
-		headers : {
+	var req = request({
+		url: url,
+		followRedirect: true,
+		headers: {
 			'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:40.0) Gecko/20100101 Firefox/40.1'
 		}
 	});
-	const feedparser = new FeedParser();
+	var feedparser = new FeedParser();
 
 	return new Promise(function (resolve, reject) {
-		const output = [];
-		let meta;
+		var output = [];
+		var meta;
 
 		req.on('error', function (error) {
 
@@ -28,7 +28,7 @@ module.exports = function getRSSItem(url) {
 
 		req.on('response', function (res) {
 
-			const stream = this;
+			var stream = this;
 
 			if (res.statusCode !== 200) {
 				return this.emit('error', new Error('Bad status code'));
@@ -48,8 +48,8 @@ module.exports = function getRSSItem(url) {
 		feedparser.on('readable', function() {
 
 			// This is where the action is!
-			const stream = this;
-			let item;
+			var stream = this;
+			var item;
 			while (item = stream.read()) {
 				if (item.date) {
 					item.humanDate = moment(item.date).format('LLLL'); 
@@ -58,12 +58,14 @@ module.exports = function getRSSItem(url) {
 			}
 		});
 
-		feedparser.on('meta', metadata => meta = metadata);
+		feedparser.on('meta', function (metadata) {
+			meta = metadata
+		});
 
 		feedparser.on('finish', function() {
 			resolve({
 				items: output,
-				meta
+				meta: meta
 			});
 		});
 	});
