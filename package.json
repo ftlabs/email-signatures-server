@@ -12,6 +12,7 @@
   "author": "FTLabs",
   "license": "MIT",
   "dependencies": {
+    "debug": "^2.2.0",
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
     "express-ftwebservice": "^2.0.2",

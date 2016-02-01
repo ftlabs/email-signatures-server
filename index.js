@@ -22,4 +22,4 @@ exports.handler = function( event, context ) {
 			return context.fail(res.text);
 		}
 	});
-}
+};
