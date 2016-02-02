@@ -35,6 +35,7 @@ app.get('/sig', function (req, res) {
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
 			}
+
 			if (omits.length) {
 				items.items.forEach(item => {
 					omits.forEach(key => {
@@ -45,7 +46,7 @@ app.get('/sig', function (req, res) {
 
 			items.size = req.query.size || 'full';
 
-			if(omits.indexOf('heading') > -1){
+			if (omits.indexOf('heading') > -1){
 				delete items.meta.description;
 			}
 
