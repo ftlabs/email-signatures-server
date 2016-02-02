@@ -35,6 +35,7 @@ app.get('/sig', function (req, res) {
 			if (!shoudDebug) {
 				items.items = items.items.slice(0, limit);
 			}
+
 			if (omits.length) {
 				items.items.forEach(function (item) {
 					omits.forEach(function (key) {

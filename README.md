@@ -1,11 +1,42 @@
-This project is served through AWS lambda and AWS api gateway
+
+# Email Signatures Server
+
+## Api:
+
+`/sig`
+
+GET Params:
+
+`url=rssFeed` *Required* The url of the rss feed from which to generate the signature from. 
+
+`debug=1` Display the raw data from the feed rather than using a theme.
+
+`max=3` Defaults to 3, number of items to display.
+
+`theme=none|pink|simple|debug` the template which to use to generate the signature, defaults to 'pink'
+
+`omit=title[,date[,...]],` what elements to omit from the template, comma seperated.
+
+
+## Adding additional themes
+
+Make a new layout in `views/` with the prefix 'signature-' view an RSS feed with the debug theme of 'debug=1' to view all the possible pieces of information which can be included.
+
+# AWS Lambda endpoint.
+
+This project is also served through AWS lambda and AWS api gateway
 
 ## Setting up Lambda
 
 * Node Version 0.10 - No es6 'Promise'
-* index.js handler
+* index.js contains the lambda handler
+* test by running `npm run setup` to create a sample `event.json` file, change the contents to be your test data.
+* in the case of this project the contents of the event.json match up to the query params of the api request
+* environment varaibles can be put in .env
+* use `npm run run` with node 0.10 to test in a similar environment to Amazon lambda.
 
-* setting up on aws
+## Setting up AWS
+
 * Make new role for Lambda project
 * POST to https://nsoiyrc3v6.execute-api.eu-west-1.amazonaws.com/prod/create?description=Email-signature-service&systemCode=emailsignatures
 * with x-api-key header, (Ask Alan Turner for an API key, requires lastpass)

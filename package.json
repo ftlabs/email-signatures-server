@@ -6,8 +6,7 @@
   "scripts": {
     "start": "bin/www",
     "setup": "node-lambda setup",
-    "run": "node-lambda run",
-    "deploy": "node-lambda deploy"
+    "run": "node-lambda run"
   },
   "author": "FTLabs",
   "license": "MIT",
